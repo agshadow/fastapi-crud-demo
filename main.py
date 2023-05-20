@@ -33,3 +33,11 @@ def tracks(track_id: int, response: Response):
         response.status_code = 404
         return "Track not found"
     return track
+
+@app.post('/tracks/', response_model=Track, status_code = 201)
+def create_track(track:Track):
+    track_dict = track.dict()
+    track_dict['id'] = max(data, key=lambda x: x['id']).get('id') + 1
+    data.append(track_dict)
+    return track_dict
+                           
